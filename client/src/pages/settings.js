@@ -1,0 +1,8 @@
+import { useAuthStore } from '@/store/authStore';
+import { apiBaseUrl } from '@/services/api';
+import { KeyRound, ServerCog, ShieldCheck } from 'lucide-react';
+
+export default function SettingsPage() {
+  const user = useAuthStore((state) => state.user);
+  return <div className="settings-page"><div className="page-heading"><div><span className="eyebrow">WORKSPACE PREFERENCES</span><h1>Settings</h1><p>Account details and local environment status.</p></div></div><section className="settings-section"><div className="settings-section-heading"><span className="settings-icon"><KeyRound size={17} /></span><div><h2>Account</h2><p>Your Relay workspace identity.</p></div></div><div className="settings-values"><div><small>NAME</small><b>{user?.name}</b></div><div><small>EMAIL</small><b>{user?.email}</b></div></div></section><section className="settings-section"><div className="settings-section-heading"><span className="settings-icon settings-green"><ServerCog size={17} /></span><div><h2>Local services</h2><p>Connection endpoints for this development workspace.</p></div></div><div className="settings-values"><div><small>API BASE URL</small><b>{apiBaseUrl}</b></div><div><small>REAL-TIME EVENTS</small><b>Socket.IO · localhost:4000</b></div></div></section><section className="settings-section security-settings"><div className="settings-section-heading"><span className="settings-icon settings-blue"><ShieldCheck size={17} /></span><div><h2>Security</h2><p>Passwords are bcrypt-hashed and OAuth credentials use AES-256-GCM encryption.</p></div></div><span className="status-pill status-succeeded">ACTIVE</span></section></div>;
+}

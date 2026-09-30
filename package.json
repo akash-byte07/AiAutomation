@@ -1,0 +1,16 @@
+{
+  "name": "agent-automation-console",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c cyan,magenta \"npm:dev --workspace=server\" \"npm:dev --workspace=client\"",
+    "build": "npm run build --workspace=client && npm run build --workspace=server",
+    "lint": "npm run lint --workspace=client",
+    "test": "npm run test --workspace=server",
+    "start": "concurrently -k -n API,WEB -c cyan,magenta \"npm:start --workspace=server\" \"npm:start --workspace=client\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
